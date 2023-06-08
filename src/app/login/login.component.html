@@ -1,0 +1,60 @@
+<div class="body-login">
+    <div class="login-card d-flex">
+        <div class="login-card-img d-none d-lg-block">
+
+        </div>
+        
+        <div class="login-card-form mx-5 ms-lg-0 my-3">
+
+            <p style="font-size: 2rem;
+                    font-weight: 500;
+                    opacity: 0.9;">
+                Login
+            </p>
+
+            <p class="font1">
+                Welcome back! Please login to your account.
+            </p>
+
+            <form #login="ngForm" 
+            (ngSubmit)="login.form.valid " 
+            novalidate>
+                
+                <div class="form-group">
+                    <label for="email" class="font1">Email 
+                        <span style="color:yellow;" *ngIf="!userFound">*User not found!</span>
+                        <span style="color:yellow;" *ngIf="!emailValid">*Invalid Email</span>
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" (change)="emailValidate()" [(ngModel)]="loginData.email" #email="ngModel" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="font1">Password <span style="color:yellow;" *ngIf="!passwordMatch">*Incorrect Password</span></label>
+                    <input type="password" class="form-control" (change)="disableLogin=false" id="password" name="password" [(ngModel)]="loginData.password" #password>
+                </div>
+
+                <div class="d-flex align-items-center mt-1" >
+                    <input type="checkbox"  id="show" name="show" (change)="password.type = show.checked ? 'text' : 'password'" #show>
+                    <label for="show" class="font1 ms-1" style="cursor: pointer;"> show password </label>
+                </div>                
+               
+                <button type="submit" class="btn btn-primary mt-3 w-100"
+                style="cursor: pointer;" 
+                [disabled]="disableLogin" (change)="enableLogin()" (click)="authenticate()">
+                    Login
+                </button>
+            </form>
+
+            <div class="mt-5">
+                <span>
+                    <span class="font1">
+                        New User? 
+                    </span>
+                    <a routerLink="/register" class="link-font">
+                        Sign Up
+                    </a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>

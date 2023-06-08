@@ -1,0 +1,140 @@
+
+.dashboard{
+    background: rgb(34,109,195);
+    background: linear-gradient(135deg, rgba(34,109,195,1) 0%, rgba(45,253,151,1) 100%);
+
+    .logout{
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #f8f8f8;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.8);
+            transition-duration: 200ms;
+        }
+    }
+}
+
+.content{
+    width: 375px;
+    height: 406px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    p{
+        font-weight: 500;
+    }
+    h1{
+        font-size: 40px;
+    }
+    
+}
+
+.loader{
+    width: 100%;
+    height: 100vh;
+    font-size: 56px;
+    color: rgb(102, 153, 255);
+}
+
+.weather-loader{
+    font-size: 42px;
+    height: 406px;
+}
+
+.restrict{
+    height: 100vh;
+    color: #f8f8f8;
+    @extend .dashboard;
+    .restrict-content{
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+    p{
+        
+        font-size: 24px;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+    button{
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #f8f8f8;
+        &:hover{
+            background-color: rgba(0, 0, 0, 1);
+            transition-duration: 0.5s;
+        }
+    }
+}
+
+.search-bar{
+    width: 375px;
+    position: relative;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: #fff;
+    input{
+        border: none;
+        font-size: 18px;
+        background-color: transparent;
+        width: 90%;
+        padding: 0 10px;
+        color: #FFF;
+        &:focus{
+            outline: none;
+        }
+        &::placeholder{
+            color: #FFF;
+            opacity: 0.7;
+        }
+    }
+    .detect{
+        cursor: pointer;
+        &:hover{
+            color: #f86b6b;
+        }
+    }
+
+}
+
+.search-result{
+    position: absolute;
+    z-index: 2;
+    background-color: #f8f8f8;
+    width: inherit;
+    max-height: 150px;
+    font-size: 18px;
+    top: 50px;
+    left: 0;
+    border-radius: 10px;
+    overflow-y: scroll;
+    .result-item{
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        cursor: pointer;
+        color: #f8f8f8;
+        font-weight: 500;
+        font-size: 16px;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    }
+    
+}
+
+.forecast{
+    width: 375px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+    .fore-item{
+        width: 70px;
+        color: #f8f8f8;
+        height: 90px;
+        margin: 5px 0;
+        border-right: 1px solid #f8f8f8;
+    }
+    .fore-item:last-child{
+        border: none;
+    }
+}

@@ -1,0 +1,122 @@
+<div class="body-login">
+    <div class="login-card 
+                d-flex
+                ">
+        <div class="login-card-img d-none d-lg-block" >
+
+        </div>
+        <div class="login-card-form mx-5 ms-lg-0 my-3">
+
+            <div *ngIf="!signUpSuccess">
+                <p style="font-size: 2rem;
+                    font-weight: 500;
+                    opacity: 0.9;">
+                Sign Up
+            </p>
+
+            <p class="font1">
+                Welcome to our Weather App.
+            </p>
+
+            <form #reg="ngForm"
+            (ngSubmit)="reg.form.valid && submit()">
+                <div class="form-group">
+                    <label for="email" class="font1">Email
+                        <span style="color:yellow;" *ngIf="emailValid">*Invalid Email</span>
+                    </label>
+                    <input type="email" class="form-control" id="email" (change)="emailValidate()" name="email" [(ngModel)]="userData.email" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="font1">Password
+                        <span style="color:yellow;" *ngIf="passValid">*password is weak</span>
+                    </label>
+                    <input type="password" class="form-control pass" id="password"  (ngModelChange)="passValidate()" (keyup)="passwordCondition()"  name="password" [(ngModel)]="userData.password" #password>
+                    <div class="pass-cond p-2" *ngIf="passCondDisplay">
+                        <p style="color:black"><b>Password Should Contain</b></p>
+                        <p [style.color]=" this.passCond.u ? 'green' : 'red'">atleast one Uppercase</p>
+                        <p [style.color]=" this.passCond.l? 'green' : 'red'">atleast one Lowercase</p>
+                        <p [style.color]=" this.passCond.n ? 'green' : 'red'">atleast one number</p>
+                        <p [style.color]=" this.passCond.s ? 'green' : 'red'">atleast one Special Char</p>
+                        <p [style.color]=" this.passCond.len ? 'green' : 'red'">Length atleast 8 char</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Cpassword" class="font1">Confirm Password
+                        <span style="color:yellow;" *ngIf="isPassSame"><br>*password doesn't match</span>
+                    </label>
+                    <input type="password" class="form-control" id="Cpassword" (change)="passwordIsSame()"  name="cpassword" [(ngModel)]="userData.cPassword">
+                </div>
+                <div class="d-flex align-items-center">
+                    <input type="checkbox"  id="show" name="show" (change)="password.type = show.checked ? 'text' : 'password'" #show>
+                    <label for="show" class="font1 ms-1"> show password </label>
+                </div> 
+                <button type="submit" class="sign-up btn btn-primary mt-3 w-100" [disabled]="enableSubmit">
+                    <span>Sign Up</span>
+                </button>
+            </form>
+
+            <div class="mt-5">
+                <span>
+                    <span class="font1">
+                        Already have an Account?
+                    </span>
+                    <a routerLink="/login" class="link-font">
+                        Login
+                    </a>
+                </span>
+            </div>
+            </div>
+
+            <div class='signup-success d-flex flex-column justify-content-center'  *ngIf="signUpSuccess">
+                <div class="">
+                    <p>
+                        <span>Sign Up</span><br>
+                        Successful!!!
+                    </p>
+                    <button class="btn btn-primary" routerLink="/login">Login Now!!!</button>
+                    <p class='mt-5' style="font-size: 16px;">Back to <a (click)="signUpSuccess=false" style="color: blue; cursor:pointer">Sign Up</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="warning-card p-2" *ngIf="emailValid">
+        <div class="d-flex 
+                justify-content-between
+                align-items-center">
+            <p class="m-0">
+                Invalid email!
+            </p>
+            <button class="btn">
+                <b>X</b>
+            </button>
+        </div>
+    </div>
+
+    <div class="warning-card p-2" *ngIf="passValid">
+        <div class="d-flex 
+                justify-content-between
+                align-items-center">
+            <p class="m-0">
+                Password is weak
+            </p>
+            <button class="btn">
+                <b>X</b>
+            </button>
+        </div>
+    </div>
+
+    <div class="warning-card p-2" *ngIf="isPassSame">
+        <div class="d-flex 
+                justify-content-between
+                align-items-center">
+            <p class="m-0">
+                Both password Should be same!
+            </p>
+            <button class="btn">
+                <b>X</b>
+            </button>
+        </div>
+    </div>
+</div>
