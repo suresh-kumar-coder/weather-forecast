@@ -37,9 +37,9 @@ export class DashboardComponent implements OnInit{
   getCurrentCity(): any{
     this.apiLoader = true
     this.http.get(`https://api.ipgeolocation.io/getip`).subscribe((data: any) => {
-        ip = data['ip']
+        this.ip = data['ip']
       });
-    this.http.get(`https://ipapi.co/${ip}/json/`).subscribe((data:any) => {
+    this.http.get(`https://ipapi.co/${this.ip}/json/`).subscribe((data:any) => {
       this.displayData(data['city'])
     });
   }
