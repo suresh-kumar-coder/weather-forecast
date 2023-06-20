@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit{
   location: string = ''
   ip: any = ''
   weatherData: any
-  ip: string = ''
   forecast: any
   d = new Date();
   loader = true
