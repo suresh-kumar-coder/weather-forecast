@@ -37,15 +37,19 @@ export class DashboardComponent implements OnInit{
 
   getCurrentCity(): any{
     this.apiLoader = true
-    this.http.get(`http://ip-api.com/json`).subscribe((data: any) => {
-        this.displayData(data['city'])
+    this.http.get(`https://api.ipgeolocation.io/getip`).subscribe((data: any) => {
+        this.ip = data['ip']
       });
+    this.http.get(`https://ipapi.co/${this.ip}/json/`).subscribe((data:any) => {
+      this.displayData(data['city'])
+    });
   }
 
   displayData(location: string): void{
     this.apiLoader = true
     this.showSearchResult=false
     this.http.get(`http://api.weatherapi.com/v1/forecast.json?key=6ca14dff0bc74a8389d53225232906&q=${location}&days=7&aqi=yes&alerts=no`)
+
       .subscribe((data: any) => {
         this.weatherData = data
         this.forecast = data['forecast']['forecastday'].slice(1,6)
@@ -58,7 +62,7 @@ export class DashboardComponent implements OnInit{
     this.showSearchResult = true
     if(loaction.length >= 3){
       this.http.get(`http://api.weatherapi.com/v1/search.json?key=6ca14dff0bc74a8389d53225232906&q=${loaction}`)
-      .subscribe( (data) => {
+.subscribe( (data) => {
         this.locationData = data
         if(this.locationData.length>0){
           this.areaFound = true
