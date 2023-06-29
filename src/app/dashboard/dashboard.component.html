@@ -3,7 +3,7 @@
 
 </div>
 
-<div class="dashboard d-flex flex-column align-items-center" *ngIf="!loader && this.access.canAccessFlag">
+<div class="dashboard d-flex flex-column align-items-center" *ngIf="!loader && this.storage.get('access') == 1">
     <div class="search-bar px-2 py-2 mb-4 mt-3 d-flex">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="search" name="location" id="loc" placeholder="Search for location"  (click)="loc.value=''" autocomplete="off" (keyup)="locationSearch(loc.value)" #loc>
@@ -75,13 +75,13 @@
         
         
     </div>
-    <button class="logout btn mt-2" (click)="this.access.canAccessFlag=false">
+    <button class="logout btn mt-2" (click)="this.storage.post('access',0)">
         Logout
     </button>
 
 </div>
 
-<div *ngIf="!this.access.canAccessFlag" class="restrict d-flex flex-column justify-content-center align-items-center">
+<div *ngIf="this.storage.get('access') == 0" class="restrict d-flex flex-column justify-content-center align-items-center">
     <div class="restrict-content p-5 d-flex flex-column align-items-center">
         <p>
             Access restricted to this page! 

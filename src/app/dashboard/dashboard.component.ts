@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {  Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import { AccessService } from '../services/access.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,8 @@ import { AccessService } from '../services/access.service';
 })
 export class DashboardComponent implements OnInit{
 
-  constructor( public access: AccessService, private route:Router, private http: HttpClient){}
+  constructor( public access: AccessService, private route:Router, private http: HttpClient,
+    public storage: LocalStorageService){}
 
   location: string = ''
   ip: any = ''
@@ -43,7 +45,7 @@ export class DashboardComponent implements OnInit{
   displayData(location: string): void{
     this.apiLoader = true
     this.showSearchResult=false
-    this.http.get(`http://api.weatherapi.com/v1/forecast.json?key=b329d3026ee94103b2962918230706&q=${location}&days=7&aqi=yes&alerts=no`)
+    this.http.get(`http://api.weatherapi.com/v1/forecast.json?key=6ca14dff0bc74a8389d53225232906&q=${location}&days=7&aqi=yes&alerts=no`)
       .subscribe((data: any) => {
         this.weatherData = data
         this.forecast = data['forecast']['forecastday'].slice(1,6)
@@ -55,7 +57,7 @@ export class DashboardComponent implements OnInit{
   locationSearch(loaction:string): void{
     this.showSearchResult = true
     if(loaction.length >= 3){
-      this.http.get(`http://api.weatherapi.com/v1/search.json?key=b329d3026ee94103b2962918230706&q=${loaction}`)
+      this.http.get(`http://api.weatherapi.com/v1/search.json?key=6ca14dff0bc74a8389d53225232906&q=${loaction}`)
       .subscribe( (data) => {
         this.locationData = data
         if(this.locationData.length>0){

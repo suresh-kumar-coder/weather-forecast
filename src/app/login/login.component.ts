@@ -65,7 +65,7 @@ export class LoginComponent {
     if( (this.storage.get(this.loginData.email) == this.loginData.password) || 
     // default credentials condition
     (this.loginData.email == this.defaultData.email && this.loginData.password == this.defaultData.password) ){
-      this.access.canAccessFlag = true
+      this.storage.post("access", 1);
       this.route.navigate(['/dashboard'])
     }
   }
