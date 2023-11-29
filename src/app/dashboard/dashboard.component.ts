@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit{
   displayData(location: string): void{
     this.apiLoader = true
     this.showSearchResult=false
-    this.http.get(`https://api.weatherapi.com/v1/forecast.json?key=6ca14dff0bc74a8389d53225232906&q=${location}&days=7&aqi=yes&alerts=no`)
+    this.http.get(`https://api.weatherapi.com/v1/forecast.json?key=6427f75f538a47fd92d143549232911&q=${location}&days=7&aqi=yes&alerts=no`)
 
       .subscribe((data: any) => {
         this.weatherData = data
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit{
   locationSearch(loaction:string): void{
     this.showSearchResult = true
     if(loaction.length >= 3){
-      this.http.get(`https://api.weatherapi.com/v1/search.json?key=6ca14dff0bc74a8389d53225232906&q=${loaction}`)
+      this.http.get(`https://api.weatherapi.com/v1/search.json?key=6427f75f538a47fd92d143549232911&q=${loaction}`)
 .subscribe( (data) => {
         this.locationData = data
         if(this.locationData.length>0){
